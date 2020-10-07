@@ -19,7 +19,7 @@
       <h3>Please reload page.Smth goes wrong</h3>
     </div>
     <div class="todos">
-      <Todo v-for="todo in allTodos" :key="todo.id" :todo="todo" @addTodo="onAddTodo"></Todo> 
+      <Todo v-for="todo in allTodos" :key="todo.id" :todo="todo"></Todo> 
     </div>
   </div>
 </template>
@@ -54,11 +54,11 @@ export default {
         }
       }).then(r => {
         this.$store.commit('setTodos',r.data)
-        this.loaded = true
       }).catch(error => {
-        this.loaded = true
         this.error = true
       })
+    this.loaded = true
+
   }
 }
 </script>

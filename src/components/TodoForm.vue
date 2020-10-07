@@ -29,8 +29,6 @@ export default {
             }
           }).then(r => {
             this.title = ""
-            console.log(r.data)
-            this.$store.commit('addTodo',r.data)
           })
     }
   }

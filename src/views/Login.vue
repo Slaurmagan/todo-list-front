@@ -44,7 +44,6 @@ export default {
                     password: this.password
                 }
             }).then(r => {
-                console.log(r)
                 if(r.data.jwt) {
                     window.localStorage.setItem('token',r.data.jwt)
                     this.$router.push('/')
@@ -52,6 +51,8 @@ export default {
             }).catch(error => {
                 this.hints = ['Email or password incorrect','Maybe problems on the server side']
             })
+            this.email = ""
+            this.password = ""
         }
     }
 }
