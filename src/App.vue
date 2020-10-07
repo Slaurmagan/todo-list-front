@@ -1,13 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="logo">TodoListFront</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li v-if="loggedIn"><a href="#" @click.prevent="logout">Logout</a></li>
+          <li v-else><a href="/auth/login">Login</a></li>
+        </ul>
+      </div>
+    </nav>
     <router-view/>
   </div>
 </template>
 
+
+<script>
+export default {
+  data() {
+    return {
+      loggedIn: false
+    }
+  },
+  methods: {
+    logout() {
+      window.localStorage.clear()
+      this.$router.push('auth/login')
+    }
+  },
+  mounted() {
+    this.loggedIn = Boolean(window.localStorage.getItem('token'))
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -28,5 +52,8 @@
       color: #42b983;
     }
   }
+}
+.logo{
+  font-size: 24px;
 }
 </style>
